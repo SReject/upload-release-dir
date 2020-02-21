@@ -1,0 +1,22 @@
+## AUTO-DETECT
+* text=auto
+
+## SOURCE CODE
+*.js  text eol=lf
+*.ejs text eol=lf
+
+## DOCUMENTATION
+*.md    text eol=lf
+LICENSE text eol=lf
+
+## LINTERS
+.eslintrc text eol=lf
+
+## CONFIGS
+.editorconfig  text eol=lf
+.gitattributes text eol=lf
+.gitconfig     text eol=lf
+.gitignore     text eol=lf
+*.yaml         text eol=lf
+*.yml          text eol=lf
+*.json         text eol=lf

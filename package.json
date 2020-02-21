@@ -1,0 +1,27 @@
+{
+  "name": "upload-release-dir",
+  "version": "1.0.0",
+  "description": "Uploads directory contents as release assets",
+  "main": "src/main.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SReject/upload-release-dir.git"
+  },
+  "keywords": [
+    "GitHub",
+    "Actions",
+    "release",
+    "assets",
+    "upload",
+    "directory",
+    "folder"
+  ],
+  "author": "SReject",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SReject/upload-release-dir/issues"
+  },
+  "homepage": "https://github.com/SReject/upload-release-dir#readme"
+}
