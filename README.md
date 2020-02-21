@@ -16,39 +16,36 @@ This GitHub Action enables a user to upload all files from a directory as releas
 &nbsp;&nbsp;If true, subdirectory files will be uploaded aswell. Please note if files share the same name the action will end in error.
 
 ### Outputs
-`result` as JSON-String  
-The result is a JSON-parsable string representing an array of results for each file uploaded
-
-The JSON string is formatted as:
+`uploaded` as JSON-String  
+&nbsp;&nbsp;A JSON-String containing an array for each successful upload formatted as:
 ```
-[
-    // For a successful upload
-    {
-        status: "ok" - Literal "ok" indicating the upload was successful
-        path: <String> - The absolute path to the file
-        name: <String> - The asset name that was used
-        id: <Number> - The id of the asset
-        url: <String> - The URL to download the asset
-    },
-    
-    // For a failed upload
-    {
-        status: "error" - Literal "error" indicating the upload failed
-        path: <String> - The absolute path to the file
-        name: <String> - The asset name used when attempting to upload
-        error: <String> - The error message of what failed
-    },
-
-    // ...
-]
+{
+    path as string - The absolute path of the file
+    url as string  - the download URL for the uploaded asset
+}
 ```
 
-### Example - Uploads multiple files
+`errored` as JSON-String  
+&nbsp;&nbsp;A JSON-String containing an array for each failed upload formatted as:
+```
+{
+    path as string  - The absolute path of the file
+    error as string - The error message of what went wrong
+}
+```
+
+### Fails on
+- Invalid Directory
+- No files to upload
+- Invalid release asset upload url
+- Any file that failed to upload
+
+## Example - Uploads multiple files
 *todo*
 
-### Contributing
+## Contributing
 *todo*
 
-### License
+## License
 The scripts and documentation of this project are released under the [ISC License](LICENSE)
 

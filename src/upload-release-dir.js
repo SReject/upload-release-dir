@@ -74,13 +74,16 @@ module.exports = async function uploadReleaseDir() {
         // Login to github
         const github = new GitHub(process.env.GITHUB_TOKEN);
 
-        let output = [];
+        let uploaded = [],
+            errored = []
 
         Object.keys(files).forEach(name => {
             let filePath = files[name].path,
                 fileSize = files[name].size;
 
             try {
+
+                // attempt to upload the file
                 let result = (await github.repos.uploadReleaseAsset({
                     url,
                     headers: { 'content-length': fileSize, 'content-type': 'application/octet-stream'},
@@ -88,26 +91,21 @@ module.exports = async function uploadReleaseDir() {
                     file: fs.readFileSync(filePath)
                 })).data;
 
-                output.push({
-                    status:      'ok',
-                    path:        files[name].path,
-                    name,
-                    id:          result.id,
-                    url: result.browser_download_url
-                });
+                // successful: store the result
+                uploaded.push({path: filePath, name, url: result.browser_download_url });
 
+            // on error, store the error
             } catch (e) {
-                output.push({
-                    status: 'error',
-                    path: files[name].path,
-                    name,
-                    error: e.message
-                });
+                errored.push({path: filePath, error: e.message});
             }
         });
 
-        core.setOutput('results', JSON.stringify(output));
+        core.setOutput('uploads', JSON.stringify(uploaded));
+        core.setOutput('errored', JSON.stringify(errored));
 
+        if (errored.length) {
+            core.setFailed('failed to upload one or more files');
+        }
 
     } catch (e) {
         core.setFailed(e.message);
