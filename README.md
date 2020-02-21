@@ -16,7 +16,7 @@ This GitHub Action enables a user to upload all files from a directory as releas
 &nbsp;&nbsp;If true, subdirectory files will be uploaded aswell. Please note if files share the same name the action will end in error.
 
 ### Outputs
-`result` as JSON-String
+`result` as JSON-String  
 The result is a JSON-parsable string representing an array of results for each file uploaded
 
 The JSON string is formatted as:
